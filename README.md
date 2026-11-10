@@ -24,6 +24,8 @@
 
 ## ✨ What you get
 
+<p align="center"><img src="docs/img/features.webp" alt="No blue ticks, your own server, keys per person, auto-delete" width="100%"></p>
+
 <table>
 <tr>
 <td width="33%" align="center"><img src="docs/img/app-active.webp" width="240" alt="WA Forwarder app, active"><br><sub><b>WA Forwarder</b>: the Android app</sub></td>
@@ -67,6 +69,8 @@ No Android Studio or Android SDK: the build script downloads the few tools it ne
 
 ### The three big steps
 
+<p align="center"><img src="docs/img/three-steps.webp" alt="You do three things, Claude Code does the rest" width="100%"></p>
+
 1. **☁️ Open a Cloudflare account** and pick your `workers.dev` subdomain (above). Claude Code then logs Wrangler in (you click **Allow**), deploys the server and creates its database.
 2. **📱 Install the app** on your phone from your personal setup link: download, get past Play Protect, allow restricted settings, notification access and battery. **[Illustrated step-by-step guide →](docs/install-app.md)**
 3. **✳️ Connect Claude**: add the connector URL in claude.ai → Settings → Connectors. Done.
@@ -105,6 +109,11 @@ Everything else (dependencies, build, signing key, D1, deploy, admin password, y
 
 ## 🧭 How it works
 
+<p align="center"><img src="docs/img/how-it-works.webp" alt="Phone notification to your Cloudflare Worker to Claude" width="100%"></p>
+
+<details>
+<summary>Technical diagram</summary>
+
 ```mermaid
 flowchart LR
     subgraph Phone["📱 Android phone"]
@@ -117,6 +126,8 @@ flowchart LR
     APP -- "HTTPS POST<br/>ingest key" --> W
     CLAUDE["✳️ Claude<br/><sub>custom connector</sub>"] -- "MCP over HTTPS<br/>connector key" --> W
 ```
+
+</details>
 
 1. **WA Forwarder** listens for WhatsApp notifications and POSTs sender, chat and text to `/ingest`, with a retry queue for when you're offline.
 2. The **Worker** stores them in **D1** under the user that owns the key. Keys are random and stored only as SHA-256 hashes.
@@ -219,6 +230,8 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 
 ### ✨ מה מקבלים
 
+<p align="center"><img src="docs/img/features-he.webp" alt="בלי וי כחול, שרת משלכם, מפתח לכל אחד, מחיקה אוטומטית" width="100%"></p>
+
 - 👀 **בלי וי כחול.** האפליקציה קוראת רק את ההתראה. היא לא פותחת את ווצאפ ולא את הצ׳אט.
 - 🔒 **הכול שלכם.** רץ על חשבון Cloudflare שלכם (התוכנית החינמית מספיקה). בלי WhatsApp API, בלי מכשיר מקושר ובלי שירות צד שלישי.
 - 🧑‍🤝‍🧑 **אפשר לצרף חברים.** לכל משתמש מפתחות משלו, תיבה משלו וקישור הגדרה בלחיצה אחת, עם קוד QR.
@@ -254,6 +267,8 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 
 ### שלושת השלבים הגדולים
 
+<p align="center"><img src="docs/img/three-steps-he.webp" alt="אתם עושים שלושה דברים, Claude Code עושה את השאר" width="100%"></p>
+
 1. **☁️ פותחים חשבון Cloudflare** ובוחרים תת־דומיין של `workers.dev` (כמו שמתואר למעלה). משם Claude Code מחבר את Wrangler (אתם רק לוחצים **Allow**), מעלה את השרת ויוצר את מסד הנתונים.
 2. **📱 מתקינים את האפליקציה** בטלפון מקישור ההגדרה האישי: הורדה, עקיפת Play Protect, אישור הגדרות מוגבלות, גישה להתראות וסוללה. **[המדריך המאויר, שלב אחר שלב ←](docs/install-app.he.md)**
 3. **✳️ מחברים את Claude**: מוסיפים את כתובת ה־connector ב־claude.ai ← Settings ← Connectors. זהו.
@@ -286,6 +301,8 @@ claude
 כל השאר באחריות Claude: תלויות, בנייה, מפתח חתימה, מסד הנתונים D1, העלאה לשרת, סיסמת הניהול, המשתמש שלכם והמדריך.
 
 ### 🧭 איך זה עובד
+
+<p align="center"><img src="docs/img/how-it-works-he.webp" alt="מההתראה בטלפון, דרך Cloudflare, אל Claude" width="100%"></p>
 
 1. **WA Forwarder** מאזין להתראות של ווצאפ ושולח את השולח, שם הצ׳אט והטקסט אל `/ingest`. כשאין אינטרנט ההודעות ממתינות בתור ונשלחות אחר כך.
 2. ה־**Worker** שומר אותן ב־**D1** תחת המשתמש שהמפתח שייך לו. המפתחות אקראיים, והשרת שומר רק את ה־hash שלהם.
