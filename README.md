@@ -16,6 +16,8 @@
   and Claude reads them through a custom MCP connector. Messages on your phone stay <b>unread</b>.
 </p>
 
+<p align="center"><sub>Created by <a href="https://www.linkedin.com/in/ben-rotenberg/">Ben Rotenberg</a></sub></p>
+
 ---
 
 ## ✨ What you get
@@ -166,4 +168,4 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 └── wrangler.jsonc       ← Worker config, no account-specific values
 ```
 
-<p align="center"><sub>Provided as is, with no warranty. Use at your own discretion and risk.</sub><br><sub>MIT licensed · Built with <a href="https://claude.com/claude-code">Claude Code</a></sub></p>
+<p align="center"><sub>Provided as is, with no warranty. Use at your own discretion and risk.</sub><br><sub>Created by <a href="https://www.linkedin.com/in/ben-rotenberg/"><b>Ben Rotenberg</b></a> · MIT licensed · Built with <a href="https://claude.com/claude-code">Claude Code</a></sub></p>

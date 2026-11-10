@@ -48,8 +48,8 @@ public class MainActivity extends Activity {
     private int cBg, cCard, cInk, cMuted, cLine, cField, cPrimary, cPrimarySoft, cOk, cOkSoft,
         cWarn, cWarnSoft, cRipple;
     private static final int HERO_A = 0xFF0B7A45, HERO_B = 0xFF1DB660;
-    /** Where the "Open source" credit links. Point it at your fork if you like. */
-    private static final String PROJECT_URL = "https://github.com/Ben-Rotenberg/whatsapp-claude-inbox";
+    /** Where the "Created by" credit links. */
+    private static final String CREATOR_URL = "https://www.linkedin.com/in/ben-rotenberg/";
 
     private EditText urlField;
     private EditText secretField;
@@ -247,7 +247,7 @@ public class MainActivity extends Activity {
         ver.setPadding(0, dp(4), 0, 0);
         body.addView(ver);
         TextView credit = new TextView(this);
-        credit.setText("Open source · built with Claude Code");
+        credit.setText("Created by Ben Rotenberg");
         credit.setTextSize(13);
         credit.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         credit.setTextColor(cPrimary);
@@ -258,7 +258,7 @@ public class MainActivity extends Activity {
             @Override public void onClick(View v) {
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(PROJECT_URL)));
+                        Uri.parse(CREATOR_URL)));
                 } catch (Exception e) {
                     toast("No browser found");
                 }
