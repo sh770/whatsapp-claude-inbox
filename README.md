@@ -52,6 +52,8 @@ Then just say:
 
 > **Set this up for me.**
 
+Before it touches anything, Claude shows you the [disclaimer](#disclaimer) and asks you to accept it. Using this tool is at your own discretion and risk.
+
 ### 🙋 Where you'll need to step in
 
 | When | What you do | Why Claude can't |
@@ -130,7 +132,19 @@ It never includes keys or links: only your public server URL.
 - You can skip specific chats, or all groups, right in the app.
 - Nothing in this repo is tied to anyone's account: no IDs, URLs, keys or signing certificates. Yours are created fresh when you build.
 
-## ⚠️ Know before you install
+<a id="disclaimer"></a>
+
+## ⚠️ Disclaimer: use at your own discretion and risk
+
+**This tool is provided "as is", without warranty of any kind. Using it is entirely at your own discretion and your own responsibility.**
+By building, deploying, installing or sharing it, you accept that:
+
+- **You are responsible** for how you use it, for the server you run, and for the messages it stores. The authors and contributors accept no liability for any damage, data loss, account issues, privacy incidents or other consequences.
+- **Other people's messages are involved.** The messages you forward were written by others. Make sure your use complies with the laws where you live (privacy, data protection, interception) and with WhatsApp's and Google's terms. If you invite friends, they are trusting you with their messages.
+- **You are lowering phone protections on purpose.** Sideloading, briefly turning off Play Protect, and allowing "restricted settings" and notification access all reduce your phone's built-in safeguards. Only do it if you understand and accept that.
+- **It may break** at any time (WhatsApp, Android, Cloudflare or Claude changes), and messages can be missed, delayed or cut off. Don't rely on it for anything important or urgent.
+
+### Know before you install
 
 This is an **experimental, personal project**, not a product. Installing it means sideloading an APK, temporarily
 working around Google Play Protect, and allowing Android "restricted settings" so the app can read notifications.
@@ -152,4 +166,4 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 └── wrangler.jsonc       ← Worker config, no account-specific values
 ```
 
-<p align="center"><sub>MIT licensed · Built with <a href="https://claude.com/claude-code">Claude Code</a></sub></p>
+<p align="center"><sub>Provided as is, with no warranty. Use at your own discretion and risk.</sub><br><sub>MIT licensed · Built with <a href="https://claude.com/claude-code">Claude Code</a></sub></p>

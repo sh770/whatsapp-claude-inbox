@@ -40,6 +40,7 @@ export const SETUP_HTML = `<!doctype html><html lang="en"><head><meta charset="u
 <span class="mono" id="mcpurl"></span><button class="secondary" id="copymcp">Copy URL</button>
 <ol start="3"><li>Save, then in a new chat ask something like: "What came in on WhatsApp today?"</li></ol>
 <p class="muted">⚠️ This URL is the key to your messages. Don't share it.</p></div>
+<p class="muted">Experimental open-source tool, provided as is with no warranty. Installing and using it is at your own discretion and risk.</p>
 </div>
 <script>
 const p=new URLSearchParams(location.hash.slice(1));const tin=p.get('in'),tmcp=p.get('mcp'),name=p.get('n');

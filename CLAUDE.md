@@ -8,6 +8,8 @@ Your job is to **do the whole setup for them**, end to end, and stop only at the
 **🙋 USER ACTION REQUIRED**, where a human has to log in, approve something, or touch the phone.
 Finish by producing a **personalized, illustrated install guide** for them (an Artifact if you can).
 
+**Start with Phase 0: show the disclaimer and get the user's explicit OK.**
+
 Read this whole file before you start. Keep a visible checklist of the phases below and update it as you go.
 
 ---
@@ -42,7 +44,20 @@ Read this whole file before you start. Keep a visible checklist of the phases be
 
 ---
 
-## Phase 0: Preflight
+## Phase 0: Disclaimer (before anything else)
+
+Before installing, building or deploying anything, show the user this disclaimer in plain words and ask them to
+confirm they accept it. **Do not continue until they explicitly agree.** If they decline, stop.
+
+> **Use at your own discretion and risk.** This tool is provided as is, with no warranty of any kind. You are solely
+> responsible for using it, for the server you run, and for the messages it stores; the authors accept no liability.
+> The messages it forwards were written by other people, so make sure your use complies with your local laws and with
+> WhatsApp's and Google's terms, and tell any friends you invite that whoever controls the Cloudflare account can
+> technically read their messages. Setup lowers some phone protections on purpose (sideloading, a temporary Play
+> Protect bypass, restricted settings, notification access). It can break or miss messages at any time, so don't
+> rely on it for anything important.
+
+## Phase 0b: Preflight
 
 Check, and install what's missing (ask once before installing system packages):
 
