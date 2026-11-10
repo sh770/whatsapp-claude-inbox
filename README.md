@@ -39,6 +39,40 @@
 - 🧰 **Four MCP tools:** `recent_messages`, `search_messages`, `list_chats`, `get_conversation`.
 - 🛠️ **No Android Studio.** The APK builds and signs from a single script, with a key generated just for you.
 
+## 📋 What you need
+
+**Accounts** (all free, except Claude):
+
+| | What | Notes |
+|---|---|---|
+| ☁️ | **Cloudflare account** | Free plan is enough. Sign up at [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up), verify your email, then open **Workers & Pages** once and choose your `workers.dev` subdomain (it becomes part of your server address). No credit card needed. |
+| ✳️ | **Claude account** with custom connectors | Used to add the WhatsApp connector at claude.ai → Settings → Connectors. Custom connectors may require a paid plan. |
+| 🐙 | GitHub (optional) | Only to clone this repo. You can also download it as a ZIP. |
+
+**Devices:**
+
+- 💻 **A computer** (Windows, macOS or Linux) with [Claude Code](https://claude.com/claude-code). It builds and deploys everything.
+- 📱 **An Android phone (8+)** with WhatsApp. iPhone isn't supported.
+
+**Software** (Claude Code checks these and offers to install what's missing):
+
+| Tool | Why |
+|---|---|
+| Node.js 20+ | Runs Wrangler, Cloudflare's CLI, to deploy the server |
+| JDK 17+ | Compiles and signs the Android app |
+| Python 3 | Small build helpers (zip alignment) |
+| Git + bash | Git Bash on Windows; built in on macOS/Linux |
+
+No Android Studio or Android SDK: the build script downloads the few tools it needs from Maven Central.
+
+### The three big steps
+
+1. **☁️ Open a Cloudflare account** and pick your `workers.dev` subdomain (above). Claude Code then logs Wrangler in (you click **Allow**), deploys the server and creates its database.
+2. **📱 Install the app** on your phone from your personal setup link: download, get past Play Protect, allow restricted settings, notification access and battery. **[Illustrated step-by-step guide →](docs/install-app.md)**
+3. **✳️ Connect Claude**: add the connector URL in claude.ai → Settings → Connectors. Done.
+
+At the end Claude Code also makes you a **personalized install guide** (a polished web page with your server's address) to keep or share with friends.
+
 ## 🤖 Build it with Claude Code
 
 This repo is written to be **built by Claude Code for you**. [`CLAUDE.md`](CLAUDE.md) is a step-by-step playbook:
@@ -165,7 +199,7 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 ├── src/                 ← Cloudflare Worker: ingest, MCP server, admin + setup pages, D1
 ├── android/             ← WA Forwarder (plain Java, no Gradle) + build.sh (no Android SDK needed)
 ├── guide/               ← install-guide template + generator
-├── docs/                ← images, and the mockups they're rendered from
+├── docs/                ← app install guide (EN/HE), images, and the mockups they're rendered from
 ├── public/              ← icons (the APK lands here at build time)
 └── wrangler.jsonc       ← Worker config, no account-specific values
 ```
@@ -191,6 +225,40 @@ Not affiliated with WhatsApp, Meta, Cloudflare or Anthropic. All screenshots are
 - 🗓️ **נמחק בכוונה.** הודעות נמחקות אוטומטית אחרי 30 יום (אפשר לשנות לכל משתמש).
 - 🧰 **ארבעה כלי MCP:** `recent_messages`, `search_messages`, `list_chats`, `get_conversation`.
 - 🛠️ **בלי Android Studio.** קובץ ה־APK נבנה ונחתם בסקריפט אחד, עם מפתח חתימה שנוצר במיוחד בשבילכם.
+
+### 📋 מה צריך
+
+**חשבונות** (כולם בחינם, חוץ מ־Claude):
+
+| | מה | הערות |
+|---|---|---|
+| ☁️ | **חשבון Cloudflare** | התוכנית החינמית מספיקה. נרשמים ב־[dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up), מאמתים את המייל, ואז נכנסים פעם אחת ל־**Workers & Pages** ובוחרים תת־דומיין של `workers.dev`, שיהיה חלק מכתובת השרת שלכם. לא צריך כרטיס אשראי. |
+| ✳️ | **חשבון Claude** עם connectors מותאמים אישית | שם מוסיפים את ה־connector של WhatsApp: claude.ai ← Settings ← Connectors. ייתכן שצריך מנוי בתשלום. |
+| 🐙 | GitHub (לא חובה) | רק כדי לשכפל את הריפו. אפשר גם להוריד אותו כ־ZIP. |
+
+**מכשירים:**
+
+- 💻 **מחשב** (Windows, macOS או Linux) עם [Claude Code](https://claude.com/claude-code). הוא בונה ומעלה הכול.
+- 📱 **טלפון אנדרואיד** (גרסה 8 ומעלה) עם ווצאפ. אייפון לא נתמך.
+
+**תוכנות** (Claude Code בודק אותן ומציע להתקין את מה שחסר):
+
+| כלי | בשביל מה |
+|---|---|
+| Node.js 20+ | מריץ את Wrangler, הכלי של Cloudflare, כדי להעלות את השרת |
+| JDK 17+ | מהדר וחותם את אפליקציית האנדרואיד |
+| Python 3 | כלי עזר קטנים לבנייה |
+| Git + bash | ב־Windows זה Git Bash. ב־macOS וב־Linux הם כבר מותקנים |
+
+לא צריך Android Studio או Android SDK: סקריפט הבנייה מוריד בעצמו את הכלים המעטים שהוא צריך.
+
+### שלושת השלבים הגדולים
+
+1. **☁️ פותחים חשבון Cloudflare** ובוחרים תת־דומיין של `workers.dev` (כמו שמתואר למעלה). משם Claude Code מחבר את Wrangler (אתם רק לוחצים **Allow**), מעלה את השרת ויוצר את מסד הנתונים.
+2. **📱 מתקינים את האפליקציה** בטלפון מקישור ההגדרה האישי: הורדה, עקיפת Play Protect, אישור הגדרות מוגבלות, גישה להתראות וסוללה. **[המדריך המאויר, שלב אחר שלב ←](docs/install-app.he.md)**
+3. **✳️ מחברים את Claude**: מוסיפים את כתובת ה־connector ב־claude.ai ← Settings ← Connectors. זהו.
+
+בסוף, Claude Code מכין גם **מדריך התקנה אישי**: דף אינטרנט מעוצב עם כתובת השרת שלכם, שאפשר לשמור או לשתף עם חברים.
 
 ### 🤖 בונים את זה עם Claude Code
 
