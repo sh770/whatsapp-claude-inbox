@@ -185,6 +185,25 @@ export function translateGuideToHebrew(source) {
 
   for (const [from, to] of translations) html = html.replaceAll(from, to);
 
+  // טיפול במשפטים שמכילים ערכים דינמיים, כגון שם בעל השרת ומספר ימי השמירה.
+  html = html
+    .replace(/A small Android app reads WhatsApp notifications and sends them to .*? private server\. From then on you can ask Claude "what did people write to me today\?", and the messages on your phone stay unread\./,
+      "אפליקציית Android קטנה קוראת את ההתראות של WhatsApp ושולחת אותן לשרת הפרטי שהוגדר עבורך. לאחר מכן אפשר לשאול את Claude: \"מה כתבו לי היום ב-WhatsApp?\" — וההודעות בטלפון נשארות לא נקראות.")
+    .replace(/Auto-deleted after (\\d+) days/g, "נמחק אוטומטית לאחר $1 ימים")
+    .replace(/and deleted automatically after (\\d+) days\\./g, "ונמחקות אוטומטית לאחר $1 ימים.")
+    .replace(/Messages are deleted from the server after (\\d+) days\\. You can also skip specific chats, or all groups, right in the app\\./g,
+      "ההודעות נמחקות מהשרת לאחר $1 ימים. אפשר גם להחריג צ׳אטים מסוימים או את כל הקבוצות ישירות באפליקציה.")
+    .replace('a. The dialog. Tap "More details"', 'א. החלון. לחץ על "פרטים נוספים"')
+    .replace('b. If needed: scanning off for a moment', 'ב. אם צריך: כיבוי זמני של הסריקה')
+    .replace('a. "Restricted setting": tap OK', 'א. "הגדרה מוגבלת": לחץ על אישור')
+    .replace('b. App info → ⋮', 'ב. פרטי האפליקציה ← ⋮')
+    .replace('c. Turn on the switch and allow', 'ג. הפעל את המתג ואשר')
+    .replace('No internet / timeout:', 'אין אינטרנט / פקיעת זמן:')
+    .replace('Background usage limits', 'הגבלות שימוש ברקע')
+    .replace('Make sure WA Forwarder is not under "Sleeping apps" and add it to "Never sleeping apps".', 'ודא ש-WA Forwarder אינה נמצאת ברשימת "אפליקציות במצב שינה" והוסף אותה לרשימת "אפליקציות שאינן נכנסות למצב שינה".')
+    .replace('Settings → Battery → Background usage limits.', 'הגדרות ← סוללה ← הגבלות שימוש ברקע.')
+    .replace('To pause: turn off "Forwarding on" in the app. To remove: uninstall the app, delete the connector in Claude, and', 'כדי להשהות: כבה באפליקציה את האפשרות "העברת הודעות פעילה". כדי להסיר: הסר את האפליקציה, מחק את החיבור ב-Claude, ובקש');
+
   // תרגום תוויות נגישות ותיאורי תמונות.
   html = html
     .replace('aria-label="Steps"', 'aria-label="שלבי ההתקנה"')
