@@ -33,7 +33,7 @@
 
         <service
             android:name=".WaListenerService"
-            android:label="WA Forwarder"
+            android:label="מעביר התראות WhatsApp"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
