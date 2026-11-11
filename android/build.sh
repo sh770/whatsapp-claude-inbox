@@ -20,8 +20,8 @@ TOOLS="${TOOLS:-$HERE/.build-tools}"
 OUT="${OUT:-$HERE/build}"
 KS="${KS:-$HERE/signing/wa-forwarder.p12}"
 KSPASS_FILE="$(dirname "$KS")/keystore-password.txt"
-VERSION_CODE="${VERSION_CODE:-3}"
-VERSION_NAME="${VERSION_NAME:-3.0}"
+VERSION_CODE="${VERSION_CODE:-4}"
+VERSION_NAME="${VERSION_NAME:-3.1}"
 MAVEN="https://repo1.maven.org/maven2"
 
 # ---- platform detection -------------------------------------------------------------
