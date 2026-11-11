@@ -38,7 +38,7 @@ const days = Number(args.retention) > 0 ? Math.round(Number(args.retention)) : 3
 const out = args.out ? String(args.out) : join(HERE, 'out');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const host = server.replace(/^https:\/\//, '');
-const who = owner ? esc(owner) : 'מי שהזמין אותך';
+const who = owner ? esc(owner) : 'האדם שהזמין אותך';
 
 const V =
   mode === 'owner'
