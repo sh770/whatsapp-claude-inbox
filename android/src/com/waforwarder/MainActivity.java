@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 
         LinearLayout page = new LinearLayout(this);
         page.setOrientation(LinearLayout.VERTICAL);
-        page.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        page.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         page.setBackgroundColor(cBg);
         page.setClipChildren(false);
 
@@ -102,18 +102,18 @@ public class MainActivity extends Activity {
         body.addView(stats);
 
         // Setup checklist.
-        body.addView(sectionTitle("Setup"));
+        body.addView(sectionTitle("הגדרה"));
         LinearLayout steps = card();
         steps.setPadding(0, dp(4), 0, dp(4));
-        stepServer = new StepRow(1, "Connect to server", new View.OnClickListener() {
+        stepServer = new StepRow(1, "חיבור לשרת", new View.OnClickListener() {
             @Override public void onClick(View v) { setConnOpen(true); urlField.requestFocus(); }
         });
-        stepAccess = new StepRow(2, "Notification access", new View.OnClickListener() {
+        stepAccess = new StepRow(2, "גישה להתראות", new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             }
         });
-        stepBattery = new StepRow(3, "Run in background", new View.OnClickListener() {
+        stepBattery = new StepRow(3, "הפעלה ברקע", new View.OnClickListener() {
             @Override public void onClick(View v) { askBattery(); }
         });
         steps.addView(stepServer.root);
@@ -136,20 +136,20 @@ public class MainActivity extends Activity {
         body.addView(steps);
 
         // Preferences.
-        body.addView(sectionTitle("Preferences"));
+        body.addView(sectionTitle("העדפות"));
         LinearLayout prefs = card();
         prefs.setPadding(0, dp(4), 0, dp(14));
         enabledSw = new Switch(this);
         groupsSw = new Switch(this);
-        prefs.addView(switchRow(enabledSw, "Forwarding on", "Turn off to pause forwarding",
+        prefs.addView(switchRow(enabledSw, "העברת הודעות פעילה", "כבה כדי להשהות את העברת ההודעות",
             p.getBoolean(Forwarder.K_ENABLED, true)));
         prefs.addView(divider());
-        prefs.addView(switchRow(groupsSw, "Group messages", "Also forward messages sent in groups",
+        prefs.addView(switchRow(groupsSw, "הודעות מקבוצות", "העבר גם הודעות שנשלחו בקבוצות",
             p.getBoolean(Forwarder.K_GROUPS, true)));
         prefs.addView(divider());
         LinearLayout ex = padded(dp(16), dp(12), dp(16), 0);
-        ex.addView(rowTitle("Chats to skip"));
-        ex.addView(rowSub("One chat or group name per line, exactly as shown in WhatsApp"));
+        ex.addView(rowTitle("שיחות שלא להעביר"));
+        ex.addView(rowSub("יש לכתוב בכל שורה שם איש קשר או קבוצה, בדיוק כפי שמופיע ב־WhatsApp"));
         excludeField = field("e.g. My Bank\nSchool parents", false);
         excludeField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         excludeField.setSingleLine(false);
@@ -157,26 +157,26 @@ public class MainActivity extends Activity {
         excludeField.setGravity(Gravity.TOP | Gravity.START);
         excludeField.setText(p.getString(Forwarder.K_EXCLUDE, ""));
         ex.addView(excludeField);
-        ex.addView(primaryButton("Save", new View.OnClickListener() {
-            @Override public void onClick(View v) { save(); toast("Saved ✓"); refreshStatus(); }
+        ex.addView(primaryButton("שמירה", new View.OnClickListener() {
+            @Override public void onClick(View v) { save(); toast("נשמר ✓"); refreshStatus(); }
         }, true));
         prefs.addView(ex);
         body.addView(prefs);
 
         // Connection details.
-        body.addView(sectionTitle("Connection details"));
+        body.addView(sectionTitle("פרטי החיבור"));
         LinearLayout conn = card();
         conn.setPadding(dp(16), dp(14), dp(16), dp(16));
         LinearLayout head = new LinearLayout(this);
         head.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout headText = new LinearLayout(this);
         headText.setOrientation(LinearLayout.VERTICAL);
-        headText.addView(rowTitle("Server"));
+        headText.addView(rowTitle("שרת"));
         connSummary = rowSub("");
         connSummary.setTextDirection(View.TEXT_DIRECTION_LOCALE);
         headText.addView(connSummary);
         head.addView(headText, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        connToggle = textButton("Edit", new View.OnClickListener() {
+        connToggle = textButton("עריכה", new View.OnClickListener() {
             @Override public void onClick(View v) { setConnOpen(!connOpen); }
         });
         head.addView(connToggle);
@@ -195,17 +195,17 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams tlp = matchWrap();
         tlp.topMargin = dp(12);
         connFields.addView(tip, tlp);
-        connFields.addView(fieldLabel("Server URL"));
+        connFields.addView(fieldLabel("כתובת השרת"));
         urlField = field("https://...", true);
         urlField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
         urlField.setText(p.getString(Forwarder.K_URL, ""));
         connFields.addView(urlField);
-        connFields.addView(fieldLabel("Personal key"));
+        connFields.addView(fieldLabel("מפתח אישי"));
         secretField = field("in_...", true);
         secretField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         secretField.setText(p.getString(Forwarder.K_SECRET, ""));
         connFields.addView(secretField);
-        connFields.addView(primaryButton("Save connection", new View.OnClickListener() {
+        connFields.addView(primaryButton("שמירת החיבור", new View.OnClickListener() {
             @Override public void onClick(View v) {
                 save(); toast("Saved ✓"); setConnOpen(false); refreshStatus();
             }
@@ -215,24 +215,24 @@ public class MainActivity extends Activity {
         setConnOpen(TextUtils.isEmpty(p.getString(Forwarder.K_URL, "")));
 
         // Tools.
-        body.addView(sectionTitle("Test & maintenance"));
+        body.addView(sectionTitle("בדיקה ותחזוקה"));
         LinearLayout tools = card();
         tools.setPadding(dp(16), dp(16), dp(16), dp(16));
-        tools.addView(primaryButton("Send test message", new View.OnClickListener() {
+        tools.addView(primaryButton("שליחת הודעת בדיקה", new View.OnClickListener() {
             @Override public void onClick(View v) { save(); sendTest(); }
         }, false));
         View gap = new View(this);
         tools.addView(gap, new LinearLayout.LayoutParams(1, dp(10)));
-        tools.addView(secondaryButton("Retry stuck messages", new View.OnClickListener() {
+        tools.addView(secondaryButton("ניסיון חוזר להודעות הממתינות", new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Forwarder.flush(MainActivity.this); toast("Retrying...");
+                Forwarder.flush(MainActivity.this); toast("מנסה לשלוח שוב...");
                 handler.postDelayed(new Runnable() { @Override public void run() { refreshStatus(); } }, 2500);
             }
         }));
         body.addView(tools);
 
         TextView foot = new TextView(this);
-        foot.setText("🔒  Messages are read from the notification only. They are never opened or marked as read.");
+        foot.setText("🔒 ההודעות נקראות מההתראות בלבד. האפליקציה אינה פותחת אותן ואינה מסמנת אותן כנקראו.");
         foot.setTextSize(12);
         foot.setTextColor(cMuted);
         foot.setGravity(Gravity.CENTER);
@@ -260,7 +260,7 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse(CREATOR_URL)));
                 } catch (Exception e) {
-                    toast("No browser found");
+                    toast("לא נמצא דפדפן");
                 }
             }
         });
@@ -310,7 +310,7 @@ public class MainActivity extends Activity {
         t.setTextColor(Color.WHITE);
         titles.addView(t);
         TextView st = startText();
-        st.setText("WhatsApp to Claude, no blue ticks");
+        st.setText("העברת הודעות WhatsApp ל־Claude בלי סימון קריאה");
         st.setTextSize(14);
         st.setTextColor(0xE6FFFFFF);
         titles.addView(st);
@@ -343,11 +343,11 @@ public class MainActivity extends Activity {
         row.setPadding(0, dp(16), 0, dp(12));
         statSent = statNumber();
         statQueue = statNumber();
-        row.addView(statCell(statSent, "Forwarded"), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        row.addView(statCell(statSent, "נשלחו"), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         View sep = new View(this);
         sep.setBackgroundColor(cLine);
         row.addView(sep, new LinearLayout.LayoutParams(dp(1), ViewGroup.LayoutParams.MATCH_PARENT));
-        row.addView(statCell(statQueue, "Queued"), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        row.addView(statCell(statQueue, "ממתינות"), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         box.addView(row);
         box.addView(divider());
         statLast = startText();
@@ -456,7 +456,7 @@ public class MainActivity extends Activity {
         String url = u.getQueryParameter("url");
         String secret = u.getQueryParameter("secret");
         if (url == null || !(url.startsWith("https://") || url.startsWith("http://"))) {
-            toast("Invalid setup link");
+            toast("קישור ההגדרה אינו תקין");
             return;
         }
         urlField.setText(url);
@@ -466,7 +466,7 @@ public class MainActivity extends Activity {
         binding = false;
         save();
         setConnOpen(false);
-        toast("Setup saved ✓");
+        toast("ההגדרות נשמרו ✓");
         refreshStatus();
     }
 
@@ -498,21 +498,21 @@ public class MainActivity extends Activity {
         int queue = Forwarder.queueSize(this);
         String last = p.getString(Forwarder.K_LAST, "");
 
-        stepServer.set(configured, configured ? host(url) : "Open your personal setup link", "Set up");
-        stepAccess.set(access, access ? "The app sees new notifications" : "Lets the app read messages from notifications", "Allow");
-        stepBattery.set(battery, battery ? "Battery optimization is off for this app" : "So Android doesn't stop it", "Allow");
+        stepServer.set(configured, configured ? host(url) : "פתח את קישור ההגדרה האישי", "הגדרה");
+        stepAccess.set(access, access ? "האפליקציה מזהה התראות חדשות" : "מאפשר לאפליקציה לקרוא הודעות מתוך ההתראות", "אישור");
+        stepBattery.set(battery, battery ? "חיסכון בסוללה אינו מגביל את האפליקציה" : "So Android doesn't stop it", "Allow");
         restrictedHint.setVisibility(access ? View.GONE : View.VISIBLE);
 
         int missing = (configured ? 0 : 1) + (access ? 0 : 1) + (battery ? 0 : 1);
         if (!configured || !access) {
-            pill("●  Setup incomplete", 0xFFFFF4D6, 0xFF8A5300);
+            pill("●  ההגדרה אינה הושלמה", 0xFFFFF4D6, 0xFF8A5300);
             heroDetail.setText(missing == 1 ? "One more step and you're done." : missing + " quick steps left below.");
         } else if (!enabled) {
-            pill("❚❚  Forwarding paused", 0x33FFFFFF, Color.WHITE);
-            heroDetail.setText("New messages are not forwarded until you turn it back on.");
+            pill("❚❚ העברת ההודעות מושהית", 0x33FFFFFF, Color.WHITE);
+            heroDetail.setText("הודעות חדשות לא יועברו עד להפעלה מחדש.");
         } else {
-            pill("●  Active · forwarding", Color.WHITE, 0xFF0B7A45);
-            heroDetail.setText(battery ? "Every new message reaches Claude within seconds."
+            pill("● פעיל · ההודעות מועברות", Color.WHITE, 0xFF0B7A45);
+            heroDetail.setText(battery ? "כל הודעה חדשה מגיעה ל־Claude בתוך שניות."
                 : "Active. Turn off battery optimization so it isn't stopped.");
         }
 
@@ -520,9 +520,9 @@ public class MainActivity extends Activity {
         statQueue.setText(String.valueOf(queue));
         statQueue.setTextColor(queue > 0 ? cWarn : cInk);
         boolean err = last.startsWith("Error") || last.startsWith("Read error") || last.startsWith("No webhook");
-        statLast.setText((err ? "⚠  " : (last.length() > 0 ? "✓  " : "")) + "Last status: " + (last.length() > 0 ? last : "nothing sent yet"));
+        statLast.setText((err ? "⚠  " : (last.length() > 0 ? "✓  " : "")) + "מצב אחרון: " + (last.length() > 0 ? last : "עדיין לא נשלחו הודעות"));
         statLast.setTextColor(err ? cWarn : cMuted);
-        connSummary.setText(configured ? host(url) : "Not connected yet");
+        connSummary.setText(configured ? host(url) : "עדיין לא מחובר");
     }
 
     private void pill(String text, int bg, int fg) {
@@ -573,7 +573,7 @@ public class MainActivity extends Activity {
             o.put("timestamp", System.currentTimeMillis());
             o.put("device", Build.MANUFACTURER + " " + Build.MODEL);
             Forwarder.enqueue(this, o);
-            toast("Test message sent");
+            toast("הודעת בדיקה נשלחה");
             handler.postDelayed(new Runnable() {
                 @Override public void run() { refreshStatus(); }
             }, 3000);
@@ -595,7 +595,7 @@ public class MainActivity extends Activity {
     private void setConnOpen(boolean open) {
         connOpen = open;
         connFields.setVisibility(open ? View.VISIBLE : View.GONE);
-        connToggle.setText(open ? "Close" : "Edit");
+        connToggle.setText(open ? "סגירה" : "עריכה");
     }
 
     // ------------------------------------------------------------------ theme & widgets
