@@ -120,8 +120,8 @@ public class MainActivity extends Activity {
         steps.addView(divider());
         steps.addView(stepAccess.root);
         restrictedHint = startText();
-        restrictedHint.setText("Option greyed out (\"Restricted setting\")? Settings → Apps → WA Forwarder → ⋮ → "
-            + "\"Allow restricted settings\", then come back and tap step 2 again.");
+        restrictedHint.setText("האפשרות אינה זמינה (הגדרה מוגבלת)? היכנס להגדרות ← יישומים ← WA Forwarder ← ⋮ ← "
+            + "\"אישור הגדרות מוגבלות\", חזור לכאן ולחץ שוב על שלב 2.");
         restrictedHint.setTextSize(13);
         restrictedHint.setTextColor(cInk);
         restrictedHint.setLineSpacing(0, 1.15f);
@@ -185,8 +185,8 @@ public class MainActivity extends Activity {
         connFields = new LinearLayout(this);
         connFields.setOrientation(LinearLayout.VERTICAL);
         TextView tip = startText();
-        tip.setText("The easy way: open your personal setup link on this phone and tap "
-            + "\"Set up the app automatically\". The details fill in by themselves.");
+        tip.setText("הדרך הפשוטה: פתח בטלפון את קישור ההגדרה האישי שלך ולחץ על "
+            + "\"הגדרה אוטומטית של האפליקציה\". הפרטים יוזנו לבד.");
         tip.setTextSize(13);
         tip.setTextColor(cInk);
         tip.setLineSpacing(0, 1.15f);
@@ -506,20 +506,20 @@ public class MainActivity extends Activity {
         int missing = (configured ? 0 : 1) + (access ? 0 : 1) + (battery ? 0 : 1);
         if (!configured || !access) {
             pill("●  ההגדרה אינה הושלמה", 0xFFFFF4D6, 0xFF8A5300);
-            heroDetail.setText(missing == 1 ? "One more step and you're done." : missing + " quick steps left below.");
+            heroDetail.setText(missing == 1 ? "נשאר עוד שלב אחד וסיימנו." : "נותרו " + missing + " שלבים קצרים להשלמה.");
         } else if (!enabled) {
             pill("❚❚ העברת ההודעות מושהית", 0x33FFFFFF, Color.WHITE);
             heroDetail.setText("הודעות חדשות לא יועברו עד להפעלה מחדש.");
         } else {
             pill("● פעיל · ההודעות מועברות", Color.WHITE, 0xFF0B7A45);
             heroDetail.setText(battery ? "כל הודעה חדשה מגיעה ל־Claude בתוך שניות."
-                : "Active. Turn off battery optimization so it isn't stopped.");
+                : "המערכת פעילה. בטל את הגבלת הסוללה כדי ש־Android לא יעצור אותה.");
         }
 
         statSent.setText(String.valueOf(sent));
         statQueue.setText(String.valueOf(queue));
         statQueue.setTextColor(queue > 0 ? cWarn : cInk);
-        boolean err = last.startsWith("Error") || last.startsWith("Read error") || last.startsWith("No webhook");
+        boolean err = last.startsWith("שגיאה") || last.startsWith("קריאת שגיאה") || last.startsWith("כתובת שרת");
         statLast.setText((err ? "⚠  " : (last.length() > 0 ? "✓  " : "")) + "מצב אחרון: " + (last.length() > 0 ? last : "עדיין לא נשלחו הודעות"));
         statLast.setTextColor(err ? cWarn : cMuted);
         connSummary.setText(configured ? host(url) : "עדיין לא מחובר");
@@ -578,7 +578,7 @@ public class MainActivity extends Activity {
                 @Override public void run() { refreshStatus(); }
             }, 3000);
         } catch (Exception e) {
-            toast("Error: " + e.getMessage());
+            toast("שגיאה: " + e.getMessage());
         }
     }
 
