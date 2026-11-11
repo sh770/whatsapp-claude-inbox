@@ -189,9 +189,9 @@ export function translateGuideToHebrew(source) {
   html = html
     .replace(/A small Android app reads WhatsApp notifications and sends them to .*? private server\. From then on you can ask Claude "what did people write to me today\?", and the messages on your phone stay unread\./,
       "אפליקציית Android קטנה קוראת את ההתראות של WhatsApp ושולחת אותן לשרת הפרטי שהוגדר עבורך. לאחר מכן אפשר לשאול את Claude: \"מה כתבו לי היום ב-WhatsApp?\" — וההודעות בטלפון נשארות לא נקראות.")
-    .replace(/Auto-deleted after (\\d+) days/g, "נמחק אוטומטית לאחר $1 ימים")
-    .replace(/and deleted automatically after (\\d+) days\\./g, "ונמחקות אוטומטית לאחר $1 ימים.")
-    .replace(/Messages are deleted from the server after (\\d+) days\\. You can also skip specific chats, or all groups, right in the app\\./g,
+    .replace(/Auto-deleted after (\d+) days/g, "נמחק אוטומטית לאחר $1 ימים")
+    .replace(/and deleted automatically after (\d+) days\./g, "ונמחקות אוטומטית לאחר $1 ימים.")
+    .replace(/Messages are deleted from the server after (\d+) days\. You can also skip specific chats, or all groups, right in the app\./g,
       "ההודעות נמחקות מהשרת לאחר $1 ימים. אפשר גם להחריג צ׳אטים מסוימים או את כל הקבוצות ישירות באפליקציה.")
     .replace('a. The dialog. Tap "More details"', 'א. החלון. לחץ על "פרטים נוספים"')
     .replace('b. If needed: scanning off for a moment', 'ב. אם צריך: כיבוי זמני של הסריקה')
