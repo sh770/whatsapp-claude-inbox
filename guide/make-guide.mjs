@@ -43,17 +43,17 @@ const who = owner ? esc(owner) : 'the person who invited you';
 const V =
   mode === 'owner'
     ? {
-        TITLE: 'WhatsApp Inbox Install Guide',
-        EYEBROW: owner ? `${esc(owner)}'s install guide · about 10 minutes` : 'Install guide · about 10 minutes',
-        OWNER_POSSESSIVE: 'your own',
-        SETUP_LINK_SOURCE: 'Create it on your admin page (see "Your server" below), as a link or a QR code.',
+        TITLE: 'מדריך התקנה – WhatsApp Inbox',
+        EYEBROW: owner ? `מדריך ההתקנה של ${esc(owner)} · כ-10 דקות` : 'מדריך התקנה · כ-10 דקות',
+        OWNER_POSSESSIVE: 'your',
+        SETUP_LINK_SOURCE: 'צור אותו בדף הניהול שלך (ראה "השרת שלך" בהמשך), כקישור או כקוד QR.',
         STEP1_TEXT:
           'Setup only works with a personal setup link (or QR code). As the owner, you create one for yourself on your admin page: open <code>' +
           esc(host) +
           '/admin</code>, sign in with your admin password, add a user with your name and click <b>Create user</b>. The link is shown only once, so open it on your phone right away or keep it somewhere private.',
-        LEAK_ACTION: 'open your admin page and click <b>New link</b> next to the user.',
-        LOST_LINK_ACTION: 'Open your admin page and click <b>New link</b> next to the user.',
-        DELETE_ACTION: 'delete the user on your admin page.',
+        LEAK_ACTION: 'פתח את דף הניהול ולחץ על <b>קישור חדש</b> ליד המשתמש.',
+        LOST_LINK_ACTION: 'פתח את דף הניהול ולחץ על <b>קישור חדש</b> ליד המשתמש.',
+        DELETE_ACTION: 'מחק את המשתמש בדף הניהול שלך.',
         WHO_CAN_SEE:
           'The server runs on <b>your own</b> Cloudflare account and the data is encrypted at rest. Anyone with access to that Cloudflare account can technically read the messages, including the messages of friends you invite. Tell them that before they install.',
         ADMIN_SECTION: `<section id="server"><div class="wrap">
@@ -68,14 +68,14 @@ const V =
 </div></section>`,
       }
     : {
-        TITLE: 'WhatsApp Inbox Install Guide',
-        EYEBROW: 'Install guide · about 10 minutes',
-        OWNER_POSSESSIVE: owner ? `${esc(owner)}'s` : 'a',
-        SETUP_LINK_SOURCE: `You get it from ${who}, as a link or a QR code.`,
-        STEP1_TEXT: `Setup only works with a personal setup link (or QR code) that ${who} creates for you. Don't have one yet? Ask before you start. Without it you can install the app, but you can't connect it.`,
-        LEAK_ACTION: `ask ${who} for a new link.`,
-        LOST_LINK_ACTION: `Ask ${who} for a new link.`,
-        DELETE_ACTION: `ask ${who} to delete your user.`,
+        TITLE: 'מדריך התקנה – WhatsApp Inbox',
+        EYEBROW: 'מדריך התקנה · כ-10 דקות',
+        OWNER_POSSESSIVE: 'your',
+        SETUP_LINK_SOURCE: `את הקישור או קוד ה-QR מקבלים מ${who}.`,
+        STEP1_TEXT: `ההגדרה מתבצעת באמצעות קישור אישי (או קוד QR) ש${who} יוצר עבורך. עדיין אין לך קישור? בקש אותו לפני שמתחילים. בלי הקישור אפשר להתקין את האפליקציה, אך אי אפשר לחבר אותה לשרת.`, 
+        LEAK_ACTION: `בקש מ${who} קישור חדש.`, 
+        LOST_LINK_ACTION: `בקש מ${who} קישור חדש.`, 
+        DELETE_ACTION: `בקש מ${who} למחוק את המשתמש שלך.`, 
         WHO_CAN_SEE: `The server runs on ${who}'s Cloudflare account and the data is encrypted at rest. Even so, <b>${who} can technically access the messages</b>. It's important that you know that.`,
         ADMIN_SECTION: '',
       };
