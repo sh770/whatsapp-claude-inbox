@@ -70,7 +70,7 @@ public final class Forwarder {
         SharedPreferences p = prefs(ctx);
         String url = p.getString(K_URL, "");
         if (url == null || url.trim().isEmpty()) {
-            p.edit().putString(K_LAST, "No webhook URL set").apply();
+            p.edit().putString(K_LAST, "כתובת שרת לא הוגדרה").apply();
             return;
         }
         String secret = p.getString(K_SECRET, "");
@@ -84,7 +84,7 @@ public final class Forwarder {
             }
             String err = post(url.trim(), secret, item);
             if (err != null) {
-                p.edit().putString(K_LAST, "Error: " + err + " (" + now() + ")").apply();
+                p.edit().putString(K_LAST, "שגיאה: " + err + " (" + now() + ")").apply();
                 return; // keep it queued, retry later
             }
             synchronized (Forwarder.class) {
@@ -94,7 +94,7 @@ public final class Forwarder {
             }
             p.edit()
                 .putLong(K_SENT, p.getLong(K_SENT, 0) + 1)
-                .putString(K_LAST, "Sent OK (" + now() + ")")
+                .putString(K_LAST, "נשלח בהצלחה (" + now() + ")")
                 .apply();
         }
     }
