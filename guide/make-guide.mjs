@@ -38,7 +38,7 @@ const days = Number(args.retention) > 0 ? Math.round(Number(args.retention)) : 3
 const out = args.out ? String(args.out) : join(HERE, 'out');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const host = server.replace(/^https:\/\//, '');
-const who = owner ? esc(owner) : 'the person who invited you';
+const who = owner ? esc(owner) : 'מי שהזמין אותך';
 
 const V =
   mode === 'owner'
@@ -48,23 +48,23 @@ const V =
         OWNER_POSSESSIVE: 'your',
         SETUP_LINK_SOURCE: 'צור אותו בדף הניהול שלך (ראה "השרת שלך" בהמשך), כקישור או כקוד QR.',
         STEP1_TEXT:
-          'Setup only works with a personal setup link (or QR code). As the owner, you create one for yourself on your admin page: open <code>' +
+          'ההגדרה מתבצעת באמצעות קישור אישי (או קוד QR). כבעל השרת, צור לעצמך קישור בדף הניהול: פתח <code>' +
           esc(host) +
-          '/admin</code>, sign in with your admin password, add a user with your name and click <b>Create user</b>. The link is shown only once, so open it on your phone right away or keep it somewhere private.',
+          '/admin</code>, התחבר באמצעות סיסמת הניהול, הוסף משתמש עם שמך ולחץ על <b>יצירת משתמש</b>. הקישור מוצג פעם אחת בלבד, לכן פתח אותו מיד בטלפון או שמור אותו במקום פרטי.',
         LEAK_ACTION: 'פתח את דף הניהול ולחץ על <b>קישור חדש</b> ליד המשתמש.',
         LOST_LINK_ACTION: 'פתח את דף הניהול ולחץ על <b>קישור חדש</b> ליד המשתמש.',
         DELETE_ACTION: 'מחק את המשתמש בדף הניהול שלך.',
         WHO_CAN_SEE:
-          'The server runs on <b>your own</b> Cloudflare account and the data is encrypted at rest. Anyone with access to that Cloudflare account can technically read the messages, including the messages of friends you invite. Tell them that before they install.',
+          'השרת פועל בחשבון Cloudflare <b>שלך</b>, והמידע מוצפן בזמן האחסון. כל מי שיש לו גישה לחשבון Cloudflare הזה יכול מבחינה טכנית לקרוא את ההודעות, כולל הודעות של חברים שתזמין. חשוב ליידע אותם לפני ההתקנה.',
         ADMIN_SECTION: `<section id="server"><div class="wrap">
-  <div class="sec-h"><h2>Your server</h2></div>
-  <p class="sec-sub">You deployed your own WhatsApp Inbox. These are the addresses you'll need. None of them is secret on its own.</p>
+  <div class="sec-h"><h2>השרת שלך</h2></div>
+  <p class="sec-sub">פרסת שרת WhatsApp Inbox משלך. אלה הכתובות שתצטרך. אף אחת מהן אינה סודית בפני עצמה.</p>
   <div class="need" style="grid-template-columns:repeat(3,1fr)">
-    <div><div class="ic">🌐</div><h3>Server</h3><p><code>${esc(host)}</code></p></div>
-    <div><div class="ic">🛠️</div><h3>Admin page</h3><p><code>${esc(host)}/admin</code><br>Create users and their setup links. The password is in your local secrets file, never in this guide.</p></div>
-    <div><div class="ic">📦</div><h3>App download</h3><p><code>${esc(host)}/wa-forwarder.apk</code></p></div>
+    <div><div class="ic">🌐</div><h3>שרת</h3><p><code>${esc(host)}</code></p></div>
+    <div><div class="ic">🛠️</div><h3>דף ניהול</h3><p><code>${esc(host)}/admin</code><br>יצירת משתמשים וקישורי הגדרה. הסיסמה נמצאת בקובץ הסודות המקומי שלך, ולעולם אינה מופיעה במדריך הזה.</p></div>
+    <div><div class="ic">📦</div><h3>הורדת האפליקציה</h3><p><code>${esc(host)}/wa-forwarder.apk</code></p></div>
   </div>
-  <div class="note info" style="margin-top:14px"><b>Inviting friends</b>Create a user for each person on the admin page and send them their own setup link (it's shown once). Then send them the friend version of this guide, which Claude Code can make with <code>--for friend</code>.</div>
+  <div class="note info" style="margin-top:14px"><b>הזמנת חברים</b>צור משתמש לכל אדם בדף הניהול ושלח לו את קישור ההגדרה האישי שלו (הוא מוצג פעם אחת בלבד). לאחר מכן שלח לו את גרסת החברים של המדריך, שאפשר ליצור עם <code>--for friend</code>.</div>
 </div></section>`,
       }
     : {
@@ -76,7 +76,7 @@ const V =
         LEAK_ACTION: `בקש מ${who} קישור חדש.`, 
         LOST_LINK_ACTION: `בקש מ${who} קישור חדש.`, 
         DELETE_ACTION: `בקש מ${who} למחוק את המשתמש שלך.`, 
-        WHO_CAN_SEE: `The server runs on ${who}'s Cloudflare account and the data is encrypted at rest. Even so, <b>${who} can technically access the messages</b>. It's important that you know that.`,
+        WHO_CAN_SEE: `השרת פועל בחשבון Cloudflare של ${who}, והמידע מוצפן בזמן האחסון. למרות זאת, <b>${who} יכול מבחינה טכנית לגשת להודעות</b>. חשוב שתהיה מודע לכך.`, 
         ADMIN_SECTION: '',
       };
 Object.assign(V, { RETENTION_DAYS: String(days), SERVER_URL: esc(server), SERVER_HOST: esc(host) });
