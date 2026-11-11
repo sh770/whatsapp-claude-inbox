@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
         LinearLayout ex = padded(dp(16), dp(12), dp(16), 0);
         ex.addView(rowTitle("שיחות שלא להעביר"));
         ex.addView(rowSub("יש לכתוב בכל שורה שם איש קשר או קבוצה, בדיוק כפי שמופיע ב־WhatsApp"));
-        excludeField = field("e.g. My Bank\nSchool parents", false);
+        excludeField = field("לדוגמה: הבנק שלי\nקבוצת הורים", false);
         excludeField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         excludeField.setSingleLine(false);
         excludeField.setMinLines(3);
@@ -207,7 +207,7 @@ public class MainActivity extends Activity {
         connFields.addView(secretField);
         connFields.addView(primaryButton("שמירת החיבור", new View.OnClickListener() {
             @Override public void onClick(View v) {
-                save(); toast("Saved ✓"); setConnOpen(false); refreshStatus();
+                save(); toast("נשמר ✓"); setConnOpen(false); refreshStatus();
             }
         }, true));
         conn.addView(connFields);
@@ -240,14 +240,14 @@ public class MainActivity extends Activity {
         body.addView(foot);
         TextView ver = new TextView(this);
         String vn = versionName();
-        ver.setText(TextUtils.isEmpty(vn) ? "WA Forwarder" : "WA Forwarder · version " + vn);
+        ver.setText(TextUtils.isEmpty(vn) ? "WA Forwarder" : "WA Forwarder · גרסה " + vn);
         ver.setTextSize(11);
         ver.setTextColor(cMuted);
         ver.setGravity(Gravity.CENTER);
         ver.setPadding(0, dp(4), 0, 0);
         body.addView(ver);
         TextView credit = new TextView(this);
-        credit.setText("Created by Ben Rotenberg");
+        credit.setText("נוצר על ידי Ben Rotenberg");
         credit.setTextSize(13);
         credit.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         credit.setTextColor(cPrimary);
@@ -500,7 +500,7 @@ public class MainActivity extends Activity {
 
         stepServer.set(configured, configured ? host(url) : "פתח את קישור ההגדרה האישי", "הגדרה");
         stepAccess.set(access, access ? "האפליקציה מזהה התראות חדשות" : "מאפשר לאפליקציה לקרוא הודעות מתוך ההתראות", "אישור");
-        stepBattery.set(battery, battery ? "חיסכון בסוללה אינו מגביל את האפליקציה" : "So Android doesn't stop it", "Allow");
+        stepBattery.set(battery, battery ? "חיסכון בסוללה אינו מגביל את האפליקציה" : "כדי ש־Android לא יעצור אותה", "אישור");
         restrictedHint.setVisibility(access ? View.GONE : View.VISIBLE);
 
         int missing = (configured ? 0 : 1) + (access ? 0 : 1) + (battery ? 0 : 1);
