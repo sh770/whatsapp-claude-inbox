@@ -204,6 +204,13 @@ export function translateGuideToHebrew(source) {
     .replace('Settings → Battery → Background usage limits.', 'הגדרות ← סוללה ← הגבלות שימוש ברקע.')
     .replace('To pause: turn off "Forwarding on" in the app. To remove: uninstall the app, delete the connector in Claude, and', 'כדי להשהות: כבה באפליקציה את האפשרות "העברת הודעות פעילה". כדי להסיר: הסר את האפליקציה, מחק את החיבור ב-Claude, ובקש');
 
+  // תרגום פרטי פתרון תקלות והצהרת האחריות שבתחתית המדריך.
+  html = html
+    .replace('Settings → Battery → App launch → WA Forwarder → Manage manually, and turn on all three switches.', 'הגדרות ← סוללה ← הפעלת אפליקציות ← WA Forwarder ← ניהול ידני, והפעל את שלושת המתגים.')
+    .replace('In בהגדרות › Connectors, check that the URL was pasted in full, with no trailing space. If you got a new setup link, replace the URL here too: delete the connector and add it again.', 'בהגדרות › Connectors, בדוק שהכתובת הודבקה במלואה וללא רווח בסופה. אם קיבלת קישור הגדרה חדש, החלף גם כאן את הכתובת: מחק את החיבור והוסף אותו מחדש.')
+    .replace('In Settings › Connectors, check that the URL was pasted in full, with no trailing space. If you got a new setup link, replace the URL here too: delete the connector and add it again.', 'בהגדרות › Connectors, בדוק שהכתובת הודבקה במלואה וללא רווח בסופה. אם קיבלת קישור הגדרה חדש, החלף גם כאן את הכתובת: מחק את החיבור והוסף אותו מחדש.')
+    .replace('Connectors', 'חיבורים')
+    .replace('⚠️ Experimental and provided as is, with no warranty of any kind. Use is at your own discretion and risk; the authors accept no liability for any consequences.', '⚠️ הפרויקט ניסיוני ומסופק כמות שהוא, ללא אחריות מכל סוג. השימוש הוא באחריותך ועל פי שיקול דעתך; היוצרים אינם נושאים באחריות לתוצאות השימוש.');
   // תרגום תוויות נגישות ותיאורי תמונות.
   html = html
     .replace('aria-label="Steps"', 'aria-label="שלבי ההתקנה"')
