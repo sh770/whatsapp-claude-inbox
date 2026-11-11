@@ -12,6 +12,7 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync } from 'node:fs';
 import { dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { translateGuideToHebrew } from './hebrew.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
@@ -84,6 +85,7 @@ let html = readFileSync(join(HERE, 'template.html'), 'utf8').replace(/\{\{([A-Z0
   if (!(k in V)) throw new Error('unknown placeholder ' + m);
   return V[k];
 });
+html = translateGuideToHebrew(html);
 
 mkdirSync(out, { recursive: true });
 const imgDir = join(ROOT, 'docs', 'img');
