@@ -1,22 +1,50 @@
-# dependencies & local state
+# Dependencies and local runtime state
 node_modules/
 .wrangler/
 
-# secrets: never commit any of these
+# Secrets and environment variables - never commit real values
 .dev.vars
 .env
-*.p12
-*.jks
-*.keystore
-android/signing/
+.env.*
+!.env.example
+*.secret
 *secrets*/
 *SECRETS*
 *-secrets.txt
+secrets.txt
+.npmrc
+!.npmrc.example
+credentials.json
+service-account*.json
+firebase-adminsdk*.json
 
-# build outputs (rebuilt by android/build.sh, served from public/ at deploy time)
+# Private keys, certificates and signing material
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.pem
+*.key
+*.mobileprovision
+android/signing/
+signing-backup/
+keystore-password.txt
+
+# Local databases, exports, backups and logs
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.dump
+*.bak
+*.log
+whatsapp-exports/
+backups/
+
+# Build outputs (rebuilt locally)
 android/.build-tools/
 android/build/
 public/wa-forwarder.apk
 
-# personalized guide output (may contain your server URL)
+# Personalized guide output may contain private server/setup details
 guide/out/
